@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  nginx:
+      build: ./nginx
+      links:
+          - node1:node1
+          - node2:node2
+          - node3:node3
+      ports:
+          - "80:80"
+          - "443:443"
+  node1:
+      build: ./node
+      ports:
+          - "8080"
+      volumes:
+        - ./../dist/:/usr/src/app/dist/
+  node2:
+      build: ./node
+      ports:
+          - "8080"
+      volumes:
+        - ./../dist/:/usr/src/app/dist/
+  node3:
+      build: ./node
+      ports:
+          - "8080"
+      volumes:
+        - ./../dist/:/usr/src/app/dist/
